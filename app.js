@@ -1,3 +1,4 @@
+//caricamento della lista in local storage
 function loadList() {
     if (localStorage.listItems) return JSON.parse(localStorage.listItems);
 
@@ -10,9 +11,9 @@ function loadList() {
 
 var listItems = loadList();
 
+//contatore elementi completati
 function updateCounters(){
     var completedCount = 0;
-
     
     listItems = listItems.filter(item => {
         if(item.completed){
@@ -28,11 +29,13 @@ function updateCounters(){
     
 }
 
+//render del template 
 function renderItem(item) {
     var template = document.getElementById("item-template").innerHTML;
     return template.replace('_TEXT_', item.text);
 }
 
+//caricamento della lista   
 function updateList(items, save) {
     var listElement = document.getElementById("task-list");
     listElement.innerHTML = '';
@@ -49,6 +52,7 @@ function updateList(items, save) {
     updateCounters();
 }
 
+//creazione di un nuovo item
 function createNew(event) {
     event.preventDefault();
 
@@ -62,6 +66,7 @@ function createNew(event) {
     updateList(listItems, true);
 }
 
+//rimozione di un elemento della lista
 function removeItem(event) {
     var clickedItemText = event.target.previousElementSibling.innerHTML;
 
@@ -72,6 +77,7 @@ function removeItem(event) {
     updateList(listItems, true);
 }
 
+//visione stato della lista
 function toggleStatus(event) {
     var clickedItemText = event.target.innerHTML;
 
@@ -84,6 +90,7 @@ function toggleStatus(event) {
     updateList(listItems, true);
 }
 
+//filtro elementi della lista
 function filterItems(status) {
     var itemToShow = [];
 
@@ -102,6 +109,7 @@ function filterItems(status) {
     updateList(itemToShow);
 }
 
+//pulizia lista completata
 function clearCompleted(){
     listItems = listItems.filter(item =>{
         return !item.completed;
