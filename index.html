@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Workshop</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script id="item-template" type="text/html">
+        <li class="list-group-item">
+          <span onclick="toggleStatus(event)">_TEXT_</span>
+          <button onclick="removeItem(event)" class="float-right">×</button>
+        </li>
+      </script>
+</head>
+
+<body>
+    <div class="container">
+        <h3>All the Task</h3>
+        <div class="panel panel-default">
+            <form onsubmit="createNew(event)" class="panel-heading">
+                <input type="text" class="form-control" id="new-item" placeholder="Add a new task">
+                <button class="btn btn-primary float-right">ADD</button>
+            </form>
+            <ul id="task-list" class="panel-group">
+                <!--List here-->
+            </ul>
+
+            <div class="panel-footere text-center small">
+                <span>Show: </span>
+                <button class="filter filter-all" onclick="filterItems()">All</button>
+                <button class="filter filter-active" onclick="filterItems('active')">Active</button>
+                <button class="filter filter-completed" onclick="filterItems('completed')">Completed</button>
+            </div>
+        </div>
+
+        <hr>
+        <button onclick="clearCompleted()" class="btn btn-success btn-xs">Clear completed</button>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
